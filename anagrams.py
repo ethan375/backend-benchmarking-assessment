@@ -8,9 +8,11 @@
     for an arbitrary list of strings.
 
 """
-__author__ = "???"
+__author__ = "Ethan375"
 
 import sys
+import cProfile
+import timeit
 
 
 def alphabetize(string):
@@ -28,6 +30,7 @@ def alphabetize(string):
 
 
 def find_anagrams(words):
+    
     """ find_anagrams
 
         Return a dictionary with keys that are alphabetized words and values
@@ -39,13 +42,21 @@ def find_anagrams(words):
         {'dgo': ['dog'], 'act': ['cat', 'act']}
 
     """
-    anagrams = {
-        alphabetize(word): [
-            w for w in words
-            if alphabetize(w) == alphabetize(word)]
-        for word in words}
+    # anagrams = {
+    #     alphabetize(word): [
+    #         w for w in words
+    #         if alphabetize(w) == alphabetize(word)]
+    #     for word in words}
+    # return anagrams
+    
+    anagrams = {}
+    for word in words:
+        alphabetized = alphabetize(word)
+        if alphabetized not in anagrams:
+            anagrams[alphabetized] = [word]
     return anagrams
 
+    
 
 if __name__ == "__main__":
     # run find anagrams of first argument
