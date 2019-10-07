@@ -48,16 +48,15 @@ def find_anagrams(words):
     #         if alphabetize(w) == alphabetize(word)]
     #     for word in words}
     # return anagrams
-
+    
     anagrams = {}
     for word in words:
         alphabetized = alphabetize(word)
-        anagrams[word] = [w for w in words if alphabetize(w) == alphabetized]
+        if alphabetized not in anagrams:
+            anagrams[alphabetized] = [word]
     return anagrams
 
     
-
-    timeit.timeit(stmt=function, number=1000)
 
 if __name__ == "__main__":
     # run find anagrams of first argument
